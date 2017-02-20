@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'root#index'
 
   namespace :api do
-    post :registration, to: 'api#registration'
+    post :subscribe, to: 'api#subscribe'
     post :push_message, to: 'api#push_message'
   end
 end

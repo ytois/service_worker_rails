@@ -5,7 +5,24 @@ div.container
       th.text-right Push通知設定
       td
         button.btn.btn-primary#push-setting 設定
+        button.btn.btn-danger#push-unsubscribe 解除
     tr
-      th.text-right Push
+      th.text-right Endpoint
       td
-        button.btn.btn-success#push-message Push
+        textarea#endpoint
+    tr
+      th.text-right Key
+      td
+        textarea#key
+
+    tr
+      th.text-right Auth
+      td
+        textarea#auth
+    tr
+      th.text-right Send Push
+      td
+        textarea#push-message
+          | message test
+        br
+        button.btn.btn-success#push-send Push
