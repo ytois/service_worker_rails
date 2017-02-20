@@ -67,7 +67,7 @@ function onPush(event) {
     };
   } else {
     var title = "default title";
-    var messege = { "body": "default body" };
+    var message = { "body": "default body" };
   }
   event.waitUntil(self.registration.showNotification(title, message));
 }

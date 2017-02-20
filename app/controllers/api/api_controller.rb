@@ -9,6 +9,7 @@ class Api::ApiController < ApplicationController
       key: params[:key],
       auth: params[:auth],
     }
+    session[:fire_base_endpoint] = params[:endpoint]
     if subscription.save
       render text: 'subscribe success'
     else
@@ -17,16 +18,17 @@ class Api::ApiController < ApplicationController
   end
 
   def push_message
-    # TODO: ユーザーと紐付け
     # TODO: 送信失敗したらDBから削除する
-    subscription = Subscription.last
-    res = Webpush.payload_send(
-      endpoint: subscription.endpoint,
-      message:  JSON.generate({title: 'push test', body: params[:body]}),
-      auth:     subscription.auth,
-      p256dh:   subscription.key,
-      api_key:  Rails.application.secrets.firebase[:api_key],
-    )
+    if session[:fire_base_endpoint]
+      subscription = Subscription.find_by(endpoint: session[:fire_base_endpoint])
+      res = Webpush.payload_send(
+        endpoint: subscription.endpoint,
+        message:  JSON.generate({title: 'push test', body: params[:body]}),
+        auth:     subscription.auth,
+        p256dh:   subscription.key,
+        api_key:  Rails.application.secrets.firebase[:api_key],
+      )
+    end
     render test: res
   end
 end
