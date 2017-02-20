@@ -1,0 +1,26 @@
+default: &default
+  adapter: postgresql
+  encoding: utf8
+  charset: utf8
+  collation: ja_JP.UTF-8
+  template: template0
+  pool: 5
+  timeout: 5000
+
+  host: localhost
+  username: <%= Rails.application.secrets.database[:username] %>
+  password: <%= Rails.application.secrets.database[:password] %>
+
+development:
+  <<: *default
+  database: service_worker_development
+
+test:
+  <<: *default
+  database: service_worker_test
+
+production:
+  <<: *default
+  database: service_worker_production
+  username: service_worker
+  password: <%= ENV['SERVICE_WORKER_DATABASE_PASSWORD'] %>
