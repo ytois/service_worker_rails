@@ -22,7 +22,11 @@ div.container
     tr
       th.text-right Send Push
       td
+        input#push-title[type='text' value='PushTitle']
+        br
         textarea#push-message
           | message test
+        br
+        input#push-url[type='text' value='https://relax-job.com']
         br
         button.btn.btn-success#push-send Push

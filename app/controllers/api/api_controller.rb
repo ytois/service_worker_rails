@@ -18,17 +18,20 @@ class Api::ApiController < ApplicationController
   end
 
   def push_message
-    # TODO: 送信失敗したらDBから削除する
     if session[:fire_base_endpoint]
       subscription = Subscription.find_by(endpoint: session[:fire_base_endpoint])
       res = Webpush.payload_send(
         endpoint: subscription.endpoint,
-        message:  JSON.generate({title: 'push test', body: params[:body]}),
+        message:  JSON.generate({title: params[:title], body: params[:body], data: {url: params[:url]}}),
         auth:     subscription.auth,
         p256dh:   subscription.key,
         api_key:  Rails.application.secrets.firebase[:api_key],
       )
     end
-    render test: res
+    render text: res
+  rescue Webpush::InvalidSubscription => e
+    # 送信失敗したらDBから削除する
+    subscription.destroy
+    render text: 'destroy subscription'
   end
 end

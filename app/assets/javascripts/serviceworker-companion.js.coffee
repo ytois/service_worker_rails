@@ -55,7 +55,7 @@ pushSend = (message) ->
   $.ajax(
     type: 'POST'
     url: '/api/push_message'
-    data: {body: message}
+    data: message
     success: ->
       console.log 'success!'
     dataType: 'json'
@@ -67,5 +67,12 @@ $(document).ready ->
   $('#push-unsubscribe').on 'click', ->
     unSubscribe()
   $('#push-send').on 'click', ->
-    message = $('#push-message').val()
+    message = {
+      title: $('#push-title').val()
+      body: $('#push-message').val()
+      url: $('#push-url').val()
+    }
     pushSend(message)
+
+notificationPermission = ->
+  Notification.permission
