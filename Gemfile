@@ -37,3 +37,4 @@ group :development, :test do
   gem 'rack-mini-profiler'
 end
 
+gem 'rails_12factor', group: :production

@@ -22,5 +22,3 @@ test:
 production:
   <<: *default
   database: service_worker_production
-  username: service_worker
-  password: <%= ENV['SERVICE_WORKER_DATABASE_PASSWORD'] %>

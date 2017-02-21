@@ -10,9 +10,6 @@
 # Ignore vendor bundle dir
 /vendor/bundle
 
-# Ignore secrets
-/config/secrets.yml
-
 # Ignore coverage outputs
 /coverage/
 
@@ -69,5 +66,6 @@ config/environments/*.local.yml
 /public/*sitemap*.xml*
 /node_modules
 
-Gemfile.lock
 public/javascripts/translations.js
+
+/config/secrets.local.yml
