@@ -4,8 +4,9 @@ div.container
     tr
       th.text-right Push通知設定
       td
-        button.btn.btn-primary#push-setting 設定
-        button.btn.btn-danger#push-unsubscribe 解除
+        /button.btn.btn-primary#push-setting 設定
+        /button.btn.btn-danger#push-unsubscribe 解除
+        =render partial: "push_toggle"
     tr
       th.text-right Endpoint
       td
@@ -30,3 +31,4 @@ div.container
         input#push-url[type='text' value='https://relax-job.com']
         br
         button.btn.btn-success#push-send Push
+
