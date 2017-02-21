@@ -1,5 +1,5 @@
 div.container
-  h2 service worker
+  h2 Service Worker
   table.table
     tr
       th.text-right Push通知設定
@@ -7,28 +7,33 @@ div.container
         /button.btn.btn-primary#push-setting 設定
         /button.btn.btn-danger#push-unsubscribe 解除
         =render partial: "push_toggle"
-    tr
-      th.text-right Endpoint
-      td
-        textarea#endpoint
-    tr
-      th.text-right Key
-      td
-        textarea#key
 
-    tr
-      th.text-right Auth
-      td
-        textarea#auth
+        div.accordion-group
+          div.accordion-heading
+            a.accordion-toggle[data = {toggle: 'collapse'} href="#subscription"] Subscription
+          div.accordion-body.collapse#subscription
+            div.accordion-inner
+              | Endpoint: 
+              input#endpoint[type='text']
+              br
+              | Key: 
+              input#key[type='text']
+              br
+              | Auth: 
+              input#auth[type='text']
     tr
       th.text-right Send Push
       td
-        input#push-title[type='text' value='PushTitle']
-        br
-        textarea#push-message
-          | message test
-        br
-        input#push-url[type='text' value='https://relax-job.com']
-        br
+        div#message-wrap
+          div
+            = image_tag("/images/icon-192x192.png")
+          div
+            input#push-title[type='text' value='PushTitle']
+            br
+            textarea#push-message
+              | message test
+            br
+            input#push-url[type='text' value='https://relax-job.com']
+            br
         button.btn.btn-success#push-send Push
 

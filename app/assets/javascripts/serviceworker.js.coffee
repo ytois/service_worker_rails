@@ -30,6 +30,7 @@ onPush = (event) ->
   else
     title = 'default title'
     message = { body: 'default body' }
+  message['icon'] = '/images/icon-192x192.png'
   event.waitUntil self.registration.showNotification(title, message)
 
 # 通知クリック時の挙動
